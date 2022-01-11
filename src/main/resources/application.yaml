@@ -31,14 +31,19 @@ spring:
 
   # https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties-cache
   cache:
-    cache-names: users
+    cache-names: users, restaurants, votes
     caffeine.spec: maximumSize=1,expireAfterAccess=60s
 
 logging:
   level:
     root: WARN
-    ru.javaops.topjava2: DEBUG
+    ru.javaops.lunch-vote: DEBUG
     org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
+  file:
+    name: /log/topjava-graduation.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
 
 server.servlet:
   encoding:
