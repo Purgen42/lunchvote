@@ -8,7 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity (name = "Restaurants")
+@Entity(name = "Restaurants")
 @Table(name = "restaurants")
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class Restaurant extends NamedEntity {
     private boolean available = true;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name="restaurant_id", referencedColumnName="id")
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @ToString.Exclude

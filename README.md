@@ -1,17 +1,33 @@
-[Проект TopJava-2](https://javaops.ru/view/topjava2)
-===============================
+##Голосование за рестораны
 
-#### Разбор решения [выпускного проекта TopJava](https://github.com/JavaOPs/topjava/blob/master/graduation.md)
-- Исходный код взят из миграции TopJava на Spring Boot (без еды)
-- На основе этого репозитория на курсе будет выполняться выпускной проект "Голосование за рестораны"
+####[Выпускной проект стажировки TopJava](https://github.com/JavaWebinar/topjava/blob/doc/doc/graduation.md)
+
+##Техническое задание
+
+Разработать архитектуру и реализовать REST API на основе Hibernate/Spring/SpringMVC (или Spring-Boot), без frontend'а
+
+####Требуемый функционал
+
+Разрабатываемая система должна обеспечивать проведение ежедневного голосования по выбору ресторана для обеда
+
+- Пользователи могут быть двух типов: администраторы и обычные пользователи;
+- Меню корректируется ежедневно (обновление выполняется администраторами);
+- Пользователи могут проголосовать за ресторан, в котором они бы предпочли обедать;
+- Каждый пользователь может отдать только один голос;
+- Если пользователь повторно голосует в течение дня:
+    - до 11:00 следует считать, что он передумал и хочет проголосовать иначе;
+    - после 11:00 менять выбор слишком поздно, повторное голосование невозможно;
+- Каждый ресторан ежедневно предоставляет новое меню.
 
 -------------------------------------------------------------
-- Stack: [JDK 17](http://jdk.java.net/17/), Spring Boot 2.5, Lombok, H2, Caffeine Cache, Swagger/OpenAPI 3.0, Mapstruct, Liquibase 
-- Run: `mvn spring-boot:run` in root directory.
+- Используемый стек: [JDK 17](http://jdk.java.net/17/), Spring Boot 2.5, Lombok, H2, Caffeine Cache, Swagger/OpenAPI 3.0
+- Запуск: `mvn spring-boot:run` в корневом каталоге.
 -----------------------------------------------------
-[REST API documentation](http://localhost:8080/swagger-ui.html)  
+[Документация REST API](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config)  
 Креденшелы:
 ```
 User:  user@yandex.ru / password
+User2:  user2@yandex.ru / password
+User3:  user3@yandex.ru / password
 Admin: admin@gmail.com / admin
 ```

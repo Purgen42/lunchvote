@@ -12,11 +12,11 @@ import ru.javaops.lunch_vote.util.validation.ValidationUtil;
 import ru.javaops.lunch_vote.web.AbstractControllerTest;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.javaops.lunch_vote.web.restaurant.RestaurantTestData.*;
+import static ru.javaops.lunch_vote.web.restaurant.RestaurantTestData.RESTAURANT1_ID;
+import static ru.javaops.lunch_vote.web.restaurant.RestaurantTestData.RESTAURANT2_ID;
 import static ru.javaops.lunch_vote.web.user.UserTestData.USER_MAIL;
 
 public class VoteControllerTest extends AbstractControllerTest {

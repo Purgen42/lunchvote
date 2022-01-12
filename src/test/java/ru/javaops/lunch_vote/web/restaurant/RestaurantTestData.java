@@ -5,7 +5,6 @@ import ru.javaops.lunch_vote.model.Restaurant;
 import ru.javaops.lunch_vote.web.MatcherFactory;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantTestData {
@@ -43,5 +42,4 @@ public class RestaurantTestData {
     public static Dish getUpdatedDish() {
         return new Dish(dish1.id(), "Updated dish", new BigDecimal("22.22"));
     }
-
 }

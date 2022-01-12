@@ -12,7 +12,6 @@ import ru.javaops.lunch_vote.model.Vote;
 import ru.javaops.lunch_vote.repository.VoteRepository;
 import ru.javaops.lunch_vote.to.VoteStat;
 
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -20,8 +19,8 @@ import java.util.stream.Collectors;
 
 import static ru.javaops.lunch_vote.util.DateTimeUtil.now;
 import static ru.javaops.lunch_vote.util.DateTimeUtil.today;
-import static ru.javaops.lunch_vote.util.validation.ValidationUtil.checkRevotingAvailable;
 import static ru.javaops.lunch_vote.util.validation.ValidationUtil.checkOptional;
+import static ru.javaops.lunch_vote.util.validation.ValidationUtil.checkRevotingAvailable;
 
 @Service
 @Slf4j
