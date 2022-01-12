@@ -80,46 +80,4 @@ public class RestaurantService {
         log.info("getAllWithDishes");
         return repository.getAllWithDishes();
     }
-
-    public Optional<Dish> getDish(int id, int dishId) {
-        log.info("getDish restaurantId={} dishId={}", id, dishId);
-        return getDishes(id).stream()
-                .filter(d -> d.getId().equals(dishId))
-                .findAny();
-    }
-
-    public List<Dish> getDishes(int id) {
-        log.info("getDishes restaurantId={}", id);
-        return checkOptional(getWithDishes(id)).getDishes();
-    }
-
-    @Transactional
-    @CacheEvict(value = "restaurants", allEntries = true)
-    public Dish addDish(int id, Dish dish) {
-        log.info("addDish restaurantId={} dish={}", id, dish);
-        checkNew(dish);
-        checkOptional(getWithDishes(id)).getDishes().add(dish);
-        return dishRepository.save(dish);
-    }
-
-    @CacheEvict(value = "restaurants", allEntries = true)
-    public void updateDish(int id, Dish dish, int dishId) {
-        log.info("updateDish restaurantId={} dish={} dishId={}", id, dish, dishId);
-        checkDishInRestaurant(id, dishId);
-        assureIdConsistent(dish, dishId);
-        dishRepository.save(dish);
-    }
-
-    @Transactional
-    @Modifying
-    @CacheEvict(value = "restaurants", allEntries = true)
-    public void deleteDish(int id, int dishId) {
-        log.info("deleteDish restaurantId={} dishId={}", id, dishId);
-        Dish dish = checkOptional(getDish(id, dishId));
-        dishRepository.delete(dish);
-    }
-
-    private void checkDishInRestaurant(int id, int dishId) {
-        Assert.notNull(getDish(id, dishId).orElse(null), "Dish not found");
-    }
 }

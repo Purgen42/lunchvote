@@ -6,9 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import ru.javaops.lunch_vote.model.Dish;
 import ru.javaops.lunch_vote.model.Restaurant;
-import ru.javaops.lunch_vote.repository.DishRepository;
 import ru.javaops.lunch_vote.repository.RestaurantRepository;
 import ru.javaops.lunch_vote.util.JsonUtil;
 import ru.javaops.lunch_vote.web.AbstractControllerTest;
@@ -27,9 +25,6 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
-
-    @Autowired
-    private DishRepository dishRepository;
 
     @Test
     @WithUserDetails(value = ADMIN_MAIL)
@@ -123,64 +118,4 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
 
         assertFalse(restaurantRepository.getById(RESTAURANT1_ID).isAvailable());
     }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void getDishes() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + RESTAURANT1_ID + "/dishes"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(DISH_MATCHER.contentJson(dishes));
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void getDish() throws Exception {
-        perform(MockMvcRequestBuilders.get(REST_URL + RESTAURANT1_ID + "/dishes/1"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(DISH_MATCHER.contentJson(dish1));
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void createDish() throws Exception {
-        Dish newDish = getNewDish();
-        ResultActions action = perform(MockMvcRequestBuilders.post(REST_URL + RESTAURANT1_ID + "/dishes")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(newDish)))
-                .andExpect(status().isCreated());
-
-        Dish created = DISH_MATCHER.readFromJson(action);
-        int newId = created.id();
-        newDish.setId(newId);
-        DISH_MATCHER.assertMatch(created, newDish);
-        DISH_MATCHER.assertMatch(dishRepository.getById(newId), newDish);
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void updateDish() throws Exception {
-        Dish updated = getUpdatedDish();
-        updated.setId(null);
-        perform(MockMvcRequestBuilders.put(REST_URL + RESTAURANT1_ID + "/dishes/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(updated)))
-                .andDo(print())
-                .andExpect(status().isNoContent());
-
-        DISH_MATCHER.assertMatch(dishRepository.getById(1), getUpdatedDish());
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void deleteDish() throws Exception {
-        perform(MockMvcRequestBuilders.delete(REST_URL + RESTAURANT1_ID + "/dishes/1"))
-                .andDo(print())
-                .andExpect(status().isNoContent());
-        assertFalse(dishRepository.findById(1).isPresent());
-    }
-
 }
