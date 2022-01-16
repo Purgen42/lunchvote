@@ -1,3 +1,4 @@
+
 ## Голосование за рестораны
 
 #### [Выпускной проект стажировки TopJava](https://github.com/JavaWebinar/topjava/blob/doc/doc/graduation.md)
