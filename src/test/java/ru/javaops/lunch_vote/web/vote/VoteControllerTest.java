@@ -12,6 +12,7 @@ import ru.javaops.lunch_vote.util.validation.ValidationUtil;
 import ru.javaops.lunch_vote.web.AbstractControllerTest;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalTime;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

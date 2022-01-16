@@ -1,12 +1,12 @@
-##Голосование за рестораны
+## Голосование за рестораны
 
-####[Выпускной проект стажировки TopJava](https://github.com/JavaWebinar/topjava/blob/doc/doc/graduation.md)
+#### [Выпускной проект стажировки TopJava](https://github.com/JavaWebinar/topjava/blob/doc/doc/graduation.md)
 
-##Техническое задание
+## Техническое задание
 
 Разработать архитектуру и реализовать REST API на основе Hibernate/Spring/SpringMVC (или Spring-Boot), без frontend'а
 
-####Требуемый функционал
+#### Требуемый функционал
 
 Разрабатываемая система должна обеспечивать проведение ежедневного голосования по выбору ресторана для обеда
 

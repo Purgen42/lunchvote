@@ -22,7 +22,8 @@ VALUES (CAST( NOW() AS Date ), 1, 2),
        (CAST( NOW() AS Date ), 2, 3),
        (CAST( NOW() AS Date ), 2, 4);
 
-INSERT INTO DISHES (description, price, restaurant_id)
-VALUES ('Первое', 35.35, 1),
-       ('Второе', 70, 1),
-       ('Компот', 35.35, 1);
+INSERT INTO DISHES (description, price, date, restaurant_id)
+VALUES ('Первое', 35.35, CAST( NOW() AS Date ), 1),
+       ('Второе', 70, CAST( NOW() AS Date ), 1),
+       ('Компот', 35.35, CAST( NOW() AS Date ), 1),
+       ('Осетрина второй свежести', 35.35, '2022-01-01', 1);

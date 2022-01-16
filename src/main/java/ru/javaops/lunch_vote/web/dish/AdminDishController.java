@@ -32,8 +32,8 @@ public class AdminDishController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dish> create(@PathVariable int restaurantId, @Valid @RequestBody Dish dish) {
-        Dish created = service.add(dish, restaurantId);
+    public ResponseEntity<Dish> create(@Valid @RequestBody Dish dish, @PathVariable int restaurantId) {
+        Dish created = service.create(dish, restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{dishId}")
                 .buildAndExpand(restaurantId, created.getId()).toUri();
@@ -42,7 +42,7 @@ public class AdminDishController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateDish(@PathVariable int restaurantId, @Valid @RequestBody Dish dish, @PathVariable int id) {
+    public void update(@PathVariable int restaurantId, @Valid @RequestBody Dish dish, @PathVariable int id) {
         service.update(dish, id, restaurantId);
     }
 
@@ -51,5 +51,4 @@ public class AdminDishController {
     public void deleteDish(@PathVariable int restaurantId, @PathVariable int id) {
         service.delete(id, restaurantId);
     }
-
 }
